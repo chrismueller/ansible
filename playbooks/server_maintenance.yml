@@ -1,0 +1,20 @@
+- name: "Server Maintenace"
+  hosts: servers
+  tasks:
+  
+    # ##########################################################################
+    # OS updates
+    # ##########################################################################
+
+    - name: Refresh package informations
+      apt:
+       update_cache: yes
+
+    - name: Update packages
+      apt:
+        name: "*"
+        state: latest
+
+    - name: Remove no longer required dependencies
+      apt:
+        autoremove: yes
